@@ -3,7 +3,7 @@ package morais.pokerhands.domain;
 import morais.pokerhands.domain.CardValue;
 import morais.pokerhands.domain.Suit;
 
-public class Card {
+public class Card implements Comparable<Card> {
 
 	private CardValue cardValue;
 	private Suit suit;
@@ -27,6 +27,11 @@ public class Card {
 
 	public void setSuit(final Suit suit) {
 		this.suit = suit;
+	}
+
+	public int compareTo(Card card) {
+		int cardValue = card.getCardValue().getCardValue();
+		return this.getCardValue().getCardValue() - cardValue;
 	}
 
 }
