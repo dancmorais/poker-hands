@@ -10,7 +10,7 @@ import morais.pokerhands.domain.Suit;
 
 public class DeckService {
 
-	public Deck generateDeck() {
+	public static Deck generateDeck() {
 		ArrayList<Card> cardArray = new ArrayList<Card>();
 		Deck deck = new Deck();
 
