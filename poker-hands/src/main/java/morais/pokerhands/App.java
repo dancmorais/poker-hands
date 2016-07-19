@@ -22,8 +22,8 @@ public class App {
 		deck = DeckService.generateDeck();
 		Hand hand1 = new Hand();
 		Hand hand2 = new Hand();
-		
-		/*Testing section*/
+
+		/* Testing section */
 		Collections.shuffle(deck.getDeck());
 
 		List<Card> list1 = new ArrayList<Card>();
@@ -33,20 +33,48 @@ public class App {
 			list2.add(deck.getDeck().remove(i));
 
 		}
-		
+
 		hand1.setHandCards(list1);
 		hand2.setHandCards(list2);
-		
-		Rank rankHand1 = HandService.checkHand(hand1);
-		Rank rankHand2 = HandService.checkHand(hand2);
-		
-		if(rankHand1.getRankValue() > rankHand2.getRankValue()){
-			System.out.println("Hand #1 wins with " + rankHand1);
-		}else if(rankHand1.getRankValue() < rankHand2.getRankValue()){
-			System.out.println("Hand #2 wins with " + rankHand2);
+
+		HandService.rankHand(hand1);
+		HandService.rankHand(hand2);
+
+		int rankValue1 = hand1.getRank().getRankValue();
+		int rankValue2 = hand2.getRank().getRankValue();
+		System.out.println("Hand #1");
+		for (Card card : hand1.getHandCards()) {
+			System.out.println(card.getCardValue().getCardValue() + " of " + card.getSuit());
 		}
-		else System.out.println("Tie with " + rankHand1);
-		/*end testing section*/
+		System.out.println();
+		System.out.println("Hand #2");
+		for (Card card : hand2.getHandCards()) {
+			System.out.println(card.getCardValue().getCardValue() + " of " + card.getSuit());
+		}
+		System.out.println();
+		if (rankValue1 > rankValue2) {
+			System.out.println("Hand #1 wins with " + hand1.getRank());
+		} else if (rankValue1 < rankValue2) {
+			System.out.println("Hand #2 wins with " + hand2.getRank());
+		} else {
+			int i = 0;
+			while (i < 5) {
+				int cardValue1 = hand1.getHandCards().get(i).getCardValue().getCardValue();
+				int cardValue2 = hand2.getHandCards().get(i).getCardValue().getCardValue();
+
+				if (cardValue1 > cardValue2) {
+					System.out.println("Hand #1 wins with higher " + hand1.getRank());
+					break;
+				} else if (cardValue1 < cardValue2) {
+					System.out.println("Hand #2 wins with higher " + hand2.getRank());
+					break;
+				}
+				i++;
+			}
+			if (i == 5)
+				System.out.println("Hands Tie with " + hand1.getRank());
+		}
+		/* end testing section */
 
 	}
 }
