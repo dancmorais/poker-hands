@@ -42,8 +42,8 @@ public class HandService {
 				isStraight = false;
 
 			if (pastCardValue == currentCardValue) {
-				if (pairedCards.size() > 2) { // Special condition for
-												// full-house
+				/*Special condition for full house*/
+				if (pairedCards.size() == 3 && pairedCards.get(0).getCardValue().getCardValue() != currentCardValue) {
 					pairedCards.add(pastCard);
 					pairedCards.add(currentCard);
 				} else {
@@ -74,8 +74,7 @@ public class HandService {
 
 		if (isFlush && isStraight) {
 			hand.setRank(Rank.STRAIGHT_FLUSH);
-		} else if (pairedCardsSize == 4
-				&& pairedCards.get(0).getCardValue() == pairedCards.get(pairedCardsSize).getCardValue()) {
+		} else if (pairedCardsSize == 4&& pairedCards.get(0).getCardValue() == pairedCards.get(pairedCardsSize - 1).getCardValue()) {
 			hand.setRank(Rank.FOUR_OF_A_KIND);
 		} else if (pairedCardsSize == 5) {
 			hand.setRank(Rank.FULL_HOUSE);
@@ -94,5 +93,46 @@ public class HandService {
 
 		return hand;
 
+	}
+	
+	public static void chooseWinner(Hand hand1, Hand hand2){
+		
+		int rankValue1 = hand1.getRank().getRankValue();
+		int rankValue2 = hand2.getRank().getRankValue();
+		
+		System.out.println("Hand #1");
+		for (Card card : hand1.getHandCards()) {
+			System.out.println(card.getCardValue().getCardId() + " of " + card.getSuit());
+		}
+		System.out.println("Rank: " + hand1.getRank());
+		System.out.println();
+		System.out.println("Hand #2");
+		for (Card card : hand2.getHandCards()) {
+			System.out.println(card.getCardValue().getCardId() + " of " + card.getSuit());
+		}
+		System.out.println("Rank: " + hand2.getRank());
+		System.out.println();
+		if (rankValue1 > rankValue2) {
+			System.out.println("Hand #1 wins with " + hand1.getRank());
+		} else if (rankValue1 < rankValue2) {
+			System.out.println("Hand #2 wins with " + hand2.getRank());
+		} else {
+			int i = 0;
+			while (i < 5) {
+				int cardValue1 = hand1.getHandCards().get(i).getCardValue().getCardValue();
+				int cardValue2 = hand2.getHandCards().get(i).getCardValue().getCardValue();
+
+				if (cardValue1 > cardValue2) {
+					System.out.println("Hand #1 wins with higher " + hand1.getRank());
+					break;
+				} else if (cardValue1 < cardValue2) {
+					System.out.println("Hand #2 wins with higher " + hand2.getRank());
+					break;
+				}
+				i++;
+			}
+			if (i == 5)
+				System.out.println("Hands Tie with " + hand1.getRank());
+		}
 	}
 }
