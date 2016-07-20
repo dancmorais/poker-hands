@@ -74,7 +74,7 @@ public class HandService {
 
 		if (isFlush && isStraight) {
 			hand.setRank(Rank.STRAIGHT_FLUSH);
-		} else if (pairedCardsSize == 4&& pairedCards.get(0).getCardValue() == pairedCards.get(pairedCardsSize - 1).getCardValue()) {
+		} else if (pairedCardsSize == 4 && pairedCards.get(0).getCardValue() == pairedCards.get(pairedCardsSize - 1).getCardValue()) {
 			hand.setRank(Rank.FOUR_OF_A_KIND);
 		} else if (pairedCardsSize == 5) {
 			hand.setRank(Rank.FULL_HOUSE);
