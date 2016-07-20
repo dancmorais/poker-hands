@@ -26,7 +26,7 @@ Valid inputs follows this example:
 
 2C 3D TH QS AD
 
-Where the first character is the card value and the second is the card suit. It must be separated by spaces or tabs. You can also input one card at a time or even pick the card suite first followed by a value. 
+Where the first character is the card value and the second is the card suit. It must be separated by spaces, tabs or a enter key. You can also input one card at a time or even pick the card suite first followed by a value. 
 
 Expect some input validation. The software will request another card if the input isn't a card or when the card was already picked before.
 
