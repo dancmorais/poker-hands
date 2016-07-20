@@ -33,25 +33,39 @@ Expect some input validation. The software will request another card if the inpu
 The following example is valid as well:
 
 d4 Kc
+
 4h
+
 S7 tS
 
 Using the inputs above, the software will produce the following output:
 
 Hand #1
+
 A of DIAMONDS
+
 Q of SPADES
+
 T of HEARTS
+
 3 of DIAMONDS
+
 2 of CLUBS
+
 Rank: HIGH_CARD
 
 Hand #2
+
 4 of HEARTS
+
 4 of DIAMONDS
+
 K of CLUBS
+
 T of SPADES
+
 7 of SPADES
+
 Rank: PAIR
 
 Hand #2 wins with PAIR
